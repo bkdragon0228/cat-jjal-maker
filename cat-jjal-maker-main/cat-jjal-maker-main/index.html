@@ -45,26 +45,7 @@
             />
             <button>🤍</button>
         </div>
-        <ul class="favorites">
-            <li>
-                <img
-                    src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
-                    alt="고양이"
-                />
-            </li>
-            <li>
-                <img
-                    src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
-                    alt="고양이"
-                />
-            </li>
-            <li>
-                <img
-                    src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
-                    alt="고양이"
-                />
-            </li>
-        </ul> -->
+        -->
         <script
             src="https://unpkg.com/react@17/umd/react.development.js"
             crossorigin
@@ -75,16 +56,30 @@
         ></script>
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
         <script type="text/babel">
-            // 컨포넌트 생성
             const catItem = (
                 <li>
                     <img src="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
                 </li>
             );
-            // 컨포넌트를 넣을 위치를 찾아주고
+            const foo = 'hello World!';
+
+            const Foo = () => {
+                return 1;
+            };
+            // 중괄호를 이용해 변수를 사용한다.
+            const favorites = (
+                <ul class="favorites">
+                    {foo}
+                    {foo === 'hello World!' ? 'true' : 'false'}
+                    {Foo()}
+                    {catItem}
+                    {catItem}
+                    {catItem}
+                </ul>
+            );
+
             const here = document.querySelector('#app');
-            // 해당 위치에 렌더한다.
-            ReactDOM.render(catItem, here);
+            ReactDOM.render(favorites, here);
         </script>
     </body>
 </html>
