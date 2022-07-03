@@ -28,24 +28,7 @@
     </style>
     <body>
         <div id="app"></div>
-        <!-- <h1>1번째 고양이 가라사대</h1>
-        <form>
-            <input
-                type="text"
-                name="name"
-                placeholder="영어 대사를 입력해주세요"
-            />
-            <button type="submit">생성</button>
-        </form>
-        <div class="main-card">
-            <img
-                src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
-                alt="고양이"
-                width="400"
-            />
-            <button>🤍</button>
-        </div>
-        -->
+
         <script
             src="https://unpkg.com/react@17/umd/react.development.js"
             crossorigin
@@ -61,25 +44,46 @@
                     <img src="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
                 </li>
             );
-            const foo = 'hello World!';
 
-            const Foo = () => {
-                return 1;
-            };
-            // 중괄호를 이용해 변수를 사용한다.
             const favorites = (
                 <ul class="favorites">
-                    {foo}
-                    {foo === 'hello World!' ? 'true' : 'false'}
-                    {Foo()}
                     {catItem}
                     {catItem}
                     {catItem}
                 </ul>
             );
-
+            const header = <h1>1번째 고양이 가라사대</h1>;
+            const form = (
+                <form>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="영어 대사를 입력해주세요"
+                    />
+                    <button type="submit">생성</button>
+                </form>
+            );
+            const mainCard = (
+                <div class="main-card">
+                    <img
+                        src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
+                        alt="고양이"
+                        width="400"
+                    />
+                    <button>🤍</button>
+                </div>
+            );
+            // 최상위 태그가 하나여야 렌더 가능
+            const app = (
+                <div>
+                    {header}
+                    {mainCard}
+                    {favorites}
+                    {form}
+                </div>
+            );
             const here = document.querySelector('#app');
-            ReactDOM.render(favorites, here);
+            ReactDOM.render(app, here);
         </script>
     </body>
 </html>
