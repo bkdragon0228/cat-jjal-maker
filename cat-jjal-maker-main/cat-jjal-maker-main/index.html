@@ -44,7 +44,6 @@
             );
         }
         function Favorites({ favorites }) {
-            // PROPS로 받아온 배열을 사용
             return (
                 <ul className="favorites">
                     {favorites.map((cat) => (
@@ -57,12 +56,21 @@
             return <h1>{props.children}</h1>;
         };
         const Form = ({ handleFormSubmit }) => {
+            const [value, setValue] = React.useState('');
+
+            function handleInputChange(e) {
+                console.log(e.target.value.toUpperCase());
+                setValue(e.target.value.toUpperCase());
+            }
+
             return (
                 <form onSubmit={handleFormSubmit}>
                     <input
                         type="text"
                         name="name"
                         placeholder="영어 대사를 입력해주세요"
+                        value={value}
+                        onChange={handleInputChange}
                     />
                     <button type="submit">생성</button>
                 </form>
@@ -88,7 +96,6 @@
 
             const [counter, setCounter] = React.useState(1);
             const [mainCatImage, setMainCatImage] = React.useState(CAT1);
-            // 새로운 상태 추가
             const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
 
             function handleFormSubmit(event) {
@@ -98,8 +105,6 @@
                 setMainCatImage(CAT2);
             }
 
-            // 끌어올렸음.
-            // CAT을 하나 추가하는 set함수
             function handleHeartClick() {
                 console.log('하트 눌렀음');
                 setFavorites([...favorites, CAT3]);
