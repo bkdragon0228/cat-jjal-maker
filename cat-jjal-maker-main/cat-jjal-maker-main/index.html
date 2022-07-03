@@ -36,7 +36,6 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
-        // 인라인 스타일링 하는법!
         function CatItem(props) {
             return (
                 <li>
@@ -56,8 +55,14 @@
             return <h1>{props.children}</h1>;
         };
         const Form = () => {
+            // onSubmit, 리플래시가 기본 동작!
+            function handleFormSubmit(event) {
+                // 기본 동작을 막음
+                event.preventDefault();
+                console.log('폼 전송됨');
+            }
             return (
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <input
                         type="text"
                         name="name"
@@ -69,10 +74,22 @@
         };
 
         const MainCard = ({ img }) => {
+            // 이벤트 다루기
+            function handleHeartClick() {
+                console.log('하트 눌렀음');
+            }
+            function handleHeartMouseOver() {
+                console.log('하트 스쳐 지나감');
+            }
             return (
                 <div className="main-card">
                     <img src={img} alt="고양이" width="400" />
-                    <button>🤍</button>
+                    <button
+                        onClick={handleHeartClick}
+                        onMouseOver={handleHeartMouseOver}
+                    >
+                        🤍
+                    </button>
                 </div>
             );
         };
