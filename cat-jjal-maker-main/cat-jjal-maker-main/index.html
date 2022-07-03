@@ -54,16 +54,7 @@
         const Title = (props) => {
             return <h1>{props.children}</h1>;
         };
-        const Form = () => {
-            // 상태 만들기, useState
-            const [counter, setCounter] = React.useState(1);
-
-            console.log(counter); // 1,2,3,4,5,6,7.. 폼이  전송될 때 마다 증가한다.
-            function handleFormSubmit(event) {
-                event.preventDefault();
-                console.log('폼 전송됨');
-                setCounter(counter + 1);
-            }
+        const Form = ({ handleFormSubmit }) => {
             return (
                 <form onSubmit={handleFormSubmit}>
                     <input
@@ -96,15 +87,37 @@
             );
         };
 
-        const app = (
-            <div>
-                <Title> 1번째 고양이 가라사대</Title>
-                <Form />
-                <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
-                <Favorites />
-            </div>
-        );
+        // 엘리먼트였던 app을 컴포넌트를 만들었다.
+        const App = () => {
+            // 상태를 부모로 옮겼다, 상태 끌어 올리기 list state up
+            const [counter, setCounter] = React.useState(1);
+
+            const CAT1 =
+                'https://cataas.com/cat/60b73094e04e18001194a309/says/react';
+            const CAT2 =
+                'https://cataas.com//cat/5e9970351b7a400011744233/says/inflearn';
+            const CAT3 =
+                'https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript';
+            // main cat 이미지를 상태로 바꾸고 생성을 눌렀을때 이미지 바꿀 수 있게
+            const [mainCatImage, setMainCatImage] = React.useState(CAT1);
+
+            // 함수를 부모로 올려오고 props로 넘긴다.
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                console.log('폼 전송됨');
+                setCounter(counter + 1);
+                setMainCatImage(CAT2);
+            }
+            return (
+                <div>
+                    <Title> {counter}번째 고양이 가라사대</Title>
+                    <Form handleFormSubmit={handleFormSubmit} />
+                    <MainCard img={mainCatImage} />
+                    <Favorites />
+                </div>
+            );
+        };
         const here = document.querySelector('#app');
-        ReactDOM.render(app, here);
+        ReactDOM.render(<App />, here);
     </script>
 </html>
