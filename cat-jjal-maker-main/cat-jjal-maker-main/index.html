@@ -55,11 +55,14 @@
             return <h1>{props.children}</h1>;
         };
         const Form = () => {
-            // onSubmit, 리플래시가 기본 동작!
+            // 상태 만들기, useState
+            const [counter, setCounter] = React.useState(1);
+
+            console.log(counter); // 1,2,3,4,5,6,7.. 폼이  전송될 때 마다 증가한다.
             function handleFormSubmit(event) {
-                // 기본 동작을 막음
                 event.preventDefault();
                 console.log('폼 전송됨');
+                setCounter(counter + 1);
             }
             return (
                 <form onSubmit={handleFormSubmit}>
@@ -74,7 +77,6 @@
         };
 
         const MainCard = ({ img }) => {
-            // 이벤트 다루기
             function handleHeartClick() {
                 console.log('하트 눌렀음');
             }
@@ -97,10 +99,9 @@
         const app = (
             <div>
                 <Title> 1번째 고양이 가라사대</Title>
-                <Title> 2번째 고양이 가라사대</Title>
+                <Form />
                 <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
                 <Favorites />
-                <Form />
             </div>
         );
         const here = document.querySelector('#app');
