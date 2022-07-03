@@ -28,32 +28,41 @@
     </style>
     <body>
         <div id="app"></div>
-
-        <script
-            src="https://unpkg.com/react@17/umd/react.development.js"
-            crossorigin
-        ></script>
-        <script
-            src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
-            crossorigin
-        ></script>
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-        <script type="text/babel">
-            const catItem = (
+    </body>
+    <script
+        src="https://unpkg.com/react@17/umd/react.development.js"
+        crossorigin
+    ></script>
+    <script
+        src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+        crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        // 컨포넌트! 대문자로 시작한다.
+        // props 인자로 받아오기
+        function CatItem(props) {
+            console.log(props); // {img: 'https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript'} 객체화 시켜서 왔다.
+            return (
                 <li>
-                    <img src="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
+                    <img src={props.img} />
                 </li>
             );
-
-            const favorites = (
+        }
+        function Favorites() {
+            return (
                 <ul class="favorites">
-                    {catItem}
-                    {catItem}
-                    {catItem}
+                    <CatItem img="https://cataas.com//cat/5e9970351b7a400011744233/says/inflear" />
+                    <CatItem img="https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript" />
                 </ul>
             );
-            const header = <h1>1번째 고양이 가라사대</h1>;
-            const form = (
+        }
+        const Title = (props) => {
+            console.log(props); // {children: ' 1번째 고양이 가라사대'} 태그 안에 넣어서 보낸 인자는 children으로 온다.
+            return <h1>{props.children}</h1>;
+        };
+        const form = () => {
+            return (
                 <form>
                     <input
                         type="text"
@@ -63,27 +72,27 @@
                     <button type="submit">생성</button>
                 </form>
             );
-            const mainCard = (
+        };
+
+        const MainCard = (props) => {
+            return (
                 <div class="main-card">
-                    <img
-                        src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
-                        alt="고양이"
-                        width="400"
-                    />
+                    <img src={props.img} alt="고양이" width="400" />
                     <button>🤍</button>
                 </div>
             );
-            // 최상위 태그가 하나여야 렌더 가능
-            const app = (
-                <div>
-                    {header}
-                    {mainCard}
-                    {favorites}
-                    {form}
-                </div>
-            );
-            const here = document.querySelector('#app');
-            ReactDOM.render(app, here);
-        </script>
-    </body>
+        };
+
+        const app = (
+            <div>
+                <Title> 1번째 고양이 가라사대</Title>
+                <Title> 2번째 고양이 가라사대</Title>
+                <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
+                <Favorites />
+                {form}
+            </div>
+        );
+        const here = document.querySelector('#app');
+        ReactDOM.render(app, here);
+    </script>
 </html>
