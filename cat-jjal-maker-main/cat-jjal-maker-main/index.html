@@ -22,9 +22,6 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        .favorites img {
-            width: 150px;
-        }
     </style>
     <body>
         <div id="app"></div>
@@ -39,10 +36,11 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
+        // 인라인 스타일링 하는법!
         function CatItem(props) {
             return (
                 <li>
-                    <img src={props.img} />
+                    <img src={props.img} style={{ width: '150px' }} />
                 </li>
             );
         }
