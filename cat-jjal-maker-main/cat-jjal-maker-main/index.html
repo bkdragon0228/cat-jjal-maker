@@ -39,10 +39,7 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
-        // 컨포넌트! 대문자로 시작한다.
-        // props 인자로 받아오기
         function CatItem(props) {
-            console.log(props); // {img: 'https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript'} 객체화 시켜서 왔다.
             return (
                 <li>
                     <img src={props.img} />
@@ -58,10 +55,9 @@
             );
         }
         const Title = (props) => {
-            console.log(props); // {children: ' 1번째 고양이 가라사대'} 태그 안에 넣어서 보낸 인자는 children으로 온다.
             return <h1>{props.children}</h1>;
         };
-        const form = () => {
+        const Form = () => {
             return (
                 <form>
                     <input
@@ -74,10 +70,10 @@
             );
         };
 
-        const MainCard = (props) => {
+        const MainCard = ({ img }) => {
             return (
                 <div class="main-card">
-                    <img src={props.img} alt="고양이" width="400" />
+                    <img src={img} alt="고양이" width="400" />
                     <button>🤍</button>
                 </div>
             );
@@ -89,7 +85,7 @@
                 <Title> 2번째 고양이 가라사대</Title>
                 <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
                 <Favorites />
-                {form}
+                <Form />
             </div>
         );
         const here = document.querySelector('#app');
