@@ -55,14 +55,31 @@
         const Title = (props) => {
             return <h1>{props.children}</h1>;
         };
-        const Form = ({ handleFormSubmit }) => {
+        const Form = () => {
+            // 한글이 들어간지 검사하는 함수
+            const includesHangul = (text) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/i.test(text);
+
             const [value, setValue] = React.useState('');
+            const [error, setError] = React.useState('');
 
             function handleInputChange(e) {
-                console.log(e.target.value.toUpperCase());
-                setValue(e.target.value.toUpperCase());
+                const userValue = e.target.value;
+                if (includesHangul(userValue)) {
+                    setError('한글은 입력할 수 없습니다.');
+                } else {
+                    setError('');
+                }
+                setValue(userValue.toUpperCase());
             }
+            function handleFormSubmit(e) {
+                e.preventDefault();
 
+                // 초기화하고 하면 else로 할 필요가 없다.
+                setError('');
+                if (value === '') {
+                    setError('빈 값으로 만들 수 없습니다.');
+                }
+            }
             return (
                 <form onSubmit={handleFormSubmit}>
                     <input
@@ -73,6 +90,7 @@
                         onChange={handleInputChange}
                     />
                     <button type="submit">생성</button>
+                    <p style={{ color: 'red' }}>{error}</p>
                 </form>
             );
         };
