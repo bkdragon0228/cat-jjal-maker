@@ -139,7 +139,7 @@
                 'https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript';
 
             const [counter, setCounter] = React.useState(
-                jsonLocalStorage.getItem('counter') || 1
+                jsonLocalStorage.getItem('counter')
             );
             const [mainCatImage, setMainCatImage] = React.useState(CAT1);
             const [favorites, setFavorites] = React.useState(
@@ -171,9 +171,11 @@
                 setFavorites(nextFavorites);
                 jsonLocalStorage.setItem('favorites', nextFavorites);
             }
+
+            const countertitle = counter === null ? '' : counter + '번째';
             return (
                 <div>
-                    <Title> {counter}번째 고양이 가라사대</Title>
+                    <Title> {countertitle} 고앙이 가라사대</Title>
                     <Form updateMainCat={updateMainCat} />
                     <MainCard
                         img={mainCatImage}
