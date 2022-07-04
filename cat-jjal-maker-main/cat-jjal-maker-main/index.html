@@ -113,19 +113,19 @@
             const CAT3 =
                 'https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript';
 
-            const [counter, setCounter] = React.useState(1);
+            const [counter, setCounter] = React.useState(
+                +localStorage.getItem('counter')
+            );
             const [mainCatImage, setMainCatImage] = React.useState(CAT1);
             const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
 
-            // 함수 수정
             function updateMainCat() {
                 setMainCatImage(CAT2);
-                setCounter(counter + 1);
+                const nextCounter = counter + 1;
+                setCounter(nextCounter);
+                localStorage.setItem('counter', nextCounter);
             }
 
-            // 리액트의 컨벤션
-            // 이벤트 핸들러 함수는 handle~로 시작
-            // 이 함수를 props로 넘길 떄 on~으로 시작하게 네이밍하기.
             function handleHeartClick() {
                 setFavorites([...favorites, CAT3]);
             }
