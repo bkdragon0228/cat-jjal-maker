@@ -61,7 +61,13 @@
                 </li>
             );
         }
+
         function Favorites({ favorites }) {
+            if (!favorites.length) {
+                return (
+                    <div> 사진 위 하트를 눌러 고양이 사진을 저장해봐요! </div>
+                );
+            }
             return (
                 <ul className="favorites">
                     {favorites.map((cat) => (
@@ -70,11 +76,11 @@
                 </ul>
             );
         }
+
         const Title = (props) => {
             return <h1>{props.children}</h1>;
         };
         const Form = ({ updateMainCat }) => {
-            // 한글이 들어간지 검사하는 함수
             const includesHangul = (text) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/i.test(text);
 
             const [value, setValue] = React.useState('');
@@ -144,12 +150,6 @@
                 setMainCatImage(newCat);
             }
 
-            // ui를 새로 그릴 때마다 호출됨
-            console.log('hello');
-
-            // 원하는 타이밍에만 호출되게끔.
-            // 빈 배열을 넣으면 가장 처음에만 호출된다.
-            // 어떤 변수를  넣으면 그 변수가 바뀔 때 호출된다.
             React.useEffect(() => {
                 setInitialCat();
             }, []);
