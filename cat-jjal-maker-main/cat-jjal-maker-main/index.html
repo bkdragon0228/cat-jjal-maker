@@ -161,9 +161,11 @@
                 const newCat = await fetchCat(value);
 
                 setMainCatImage(newCat);
-                const nextCounter = counter + 1;
-                setCounter(nextCounter);
-                jsonLocalStorage.setItem('counter', nextCounter);
+                setCounter((prev) => {
+                    const nextCounter = prev + 1;
+                    jsonLocalStorage.setItem('counter', nextCounter);
+                    return nextCounter;
+                });
             }
 
             function handleHeartClick() {
