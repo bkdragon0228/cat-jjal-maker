@@ -139,6 +139,21 @@
                 jsonLocalStorage.getItem('favorites') || []
             );
 
+            async function setInitialCat() {
+                const newCat = await fetchCat('first cat');
+                setMainCatImage(newCat);
+            }
+
+            // ui를 새로 그릴 때마다 호출됨
+            console.log('hello');
+
+            // 원하는 타이밍에만 호출되게끔.
+            // 빈 배열을 넣으면 가장 처음에만 호출된다.
+            // 어떤 변수를  넣으면 그 변수가 바뀔 때 호출된다.
+            React.useEffect(() => {
+                setInitialCat();
+            }, []);
+
             async function updateMainCat(value) {
                 const newCat = await fetchCat(value);
 
