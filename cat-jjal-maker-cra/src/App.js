@@ -136,6 +136,8 @@ const App = () => {
     }
 
     const countertitle = counter === null ? '' : counter + '번째';
+
+    console.log('text');
     return (
         <div>
             <Title> {countertitle} 고앙이 가라사대</Title>
